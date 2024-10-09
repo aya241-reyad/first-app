@@ -23,8 +23,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 
+
 Route::group(['middleware'=>'auth:api'],function(){
 Route::get('categories',[CategoryController::class,'all']);
+Route::post('categories/create',[CategoryController::class,'add']);
+
+Route::post('categories/edit/{id}',[CategoryController::class,'edit']);
+
+Route::get('categories/{id}',[CategoryController::class,'show']);
+
+Route::delete('categories/{id}',[CategoryController::class,'destroy']);
+Route::post('logout',[AuthController::class,'logout']);
 
 
 });
